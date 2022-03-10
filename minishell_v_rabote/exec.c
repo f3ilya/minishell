@@ -72,7 +72,7 @@ int	exec(char **cmd, int pipe)
 	int ret1;
 	int	ret2;
 
-	if (!cmd || !cmd[0] || !cmd[1])
+	if (!cmd || !cmd[0] || cmd[0][0] == '\0')
 		return (-1);
 	ret1 = check_builtin(cmd);
 	if (ret1)

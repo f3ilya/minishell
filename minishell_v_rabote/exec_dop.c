@@ -1,16 +1,27 @@
 #include "minishell.h"
 
+void	child_status(void)
+{
+	if (WIFEXITED(g_pid))
+		g_status = WEXITSTATUS(g_pid);
+	if (WIFSIGNALED(g_pid))
+		g_status = WTERMSIG(g_pid);
+}
+
 int	ft_execve(char **cmd, char *str, int pipe)
 {
-	pid_t 	pid;
-
-	pid = fork();
-	if (pid < 0)
-		return (err_out("execve: ", "bad fork", 1, -1));
-	if (pid == 0)
+	if (!pipe)
+		g_pid = fork();
+	if (!pipe && g_pid < 0)
+		return (err_out("execve: ", "failed to create a new process.", 1, -1));
+	if (!g_pid)
 		if (execve(str, cmd, g_env) == -1)
 			return (err_out("command not found: ", cmd[0], 127, -1));
-	waitpid(pid, NULL, 0);
+	if (pipe)
+		return (1);
+	wait(&g_pid);
+	child_status();
+	g_pid = 0;
 	return (1);
 }
 
