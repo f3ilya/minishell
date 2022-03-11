@@ -1,0 +1,4 @@
+/home/f3ilya/clion-2021.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/f3ilya/clion-2021.3/bin/ninja/linux/ninja -G Ninja /home/f3ilya/minishell/minishell_v_rabote
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/f3ilya/minishell/minishell_v_rabote/cmake-build-debug
