@@ -2,14 +2,11 @@
 
 char	**remove_env(int index, t_param *p)
 {
-	char *tmp;
-
 	while (p->env[index + 1])
 	{
-		tmp = ft_strdup(p->env[index + 1]);
 		free(p->env[index]);
-		p->env[index] = tmp;
-		free(tmp);
+		p->env[index] = ft_strdup(p->env[index + 1]);
+		index++;
 	}
 	return (realloc_env(index, p));
 }

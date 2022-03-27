@@ -31,8 +31,6 @@ int run_pipe(t_arg *arg, t_param *p, int fd)
 		child(arg, fd, end);
 		exec(arg->arg, 1, p);
 	}
-	wait(&p->pid);
-	child_status(p);
 	close(end[1]);
 	close(fd);
 	return (end[0]);
@@ -40,11 +38,15 @@ int run_pipe(t_arg *arg, t_param *p, int fd)
 
 void	pipe_list(t_arg *arg, t_param *p)
 {
-	int fd = 0;
+	int fd;
+
+	fd = 0;
 	while (arg)
 	{
 		fd = run_pipe(arg, p, fd);
 		arg = arg->next;
 	}
+	wait(&p->pid);
+	child_status(p);
 	close(fd);
 }

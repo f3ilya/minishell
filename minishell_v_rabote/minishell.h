@@ -23,7 +23,6 @@ typedef struct s_param {
 
 typedef struct s_arg {
 	char 			**arg;
-	int				fd[2];
 	struct s_arg 	*next;
 	struct s_arg 	*prev;
 } t_arg;

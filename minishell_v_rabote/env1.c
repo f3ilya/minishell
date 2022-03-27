@@ -25,7 +25,7 @@ int find_env(char *cmd, t_param *p)
 	size = ft_strlen(cmd);
 	while (p->env[++i])
 	{
-		if (!ft_strncmp(p->env[i], cmd, size) && cmd[size + 1] == '=')
+		if (!ft_strncmp(p->env[i], cmd, size) && p->env[i][size] == '=')
 			return (i);
 	}
 	return (-1);
@@ -41,7 +41,9 @@ char	**realloc_env(int size, t_param *p)
 	if (new)
 	{
 		while (p->env[++i] && i < size)
+		{
 			new[i] = ft_strdup(p->env[i]);
+		}
 		new[size] = 0;
 		ft_free(p->env);
 	}
