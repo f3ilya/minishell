@@ -1,5 +1,20 @@
 #include "minishell.h"
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
+	}
+}
+
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
@@ -34,7 +49,6 @@ char    *ft_strjoin(char const *s1, char const *s2)
 		while (s2[++j])
 			str[j + i] = s2[j];
 		str[j + i] = '\0';
-		free((void *)s1);
 		return (str);
 	}
 	return (NULL);
@@ -97,3 +111,20 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
+char	*ft_strdup(const char *s1)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)malloc(sizeof(*s1) * (ft_strlen((char *)s1) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

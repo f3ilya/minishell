@@ -1,46 +1,50 @@
 #include "minishell.h"
 
-void	child(t_arg *arg)
+void	child(t_arg *arg, int fd, int end[2])
 {
-	close(arg->fd[0]);
-	dup2(arg->fd[1], STDOUT_FILENO);
-	close(arg->fd[1]);
+	close(end[0]);
+	dup2(fd, STDIN_FILENO);
+	close(fd);
 	if (arg->next)
 	{
-		close(arg->fd[1]);
-		dup2(arg->fd[0], STDIN_FILENO);
-		close(arg->fd[0]);
+		dup2(end[1], STDOUT_FILENO);
+		close(end[1]);
 	}
 }
 
-int run_pipe(t_arg *arg)
+int run_pipe(t_arg *arg, t_param *p, int fd)
 {
-	if (pipe(arg->fd))
+	int end[2];
+
+	if (pipe(end))
 		return (-1);
-	g_pid = fork();
-	if (g_pid < 0)
+	p->pid = fork();
+	if (p->pid < 0)
 	{
-		close(arg->fd[0]);
-		close(arg->fd[1]);
+		close(end[0]);
+		close(end[1]);
+		close(fd);
 		return (-1);
 	}
-	else if (!g_pid)
+	else if (!p->pid)
 	{
-		child(arg);
-		exec(arg->arg, 1);
+		child(arg, fd, end);
+		exec(arg->arg, 1, p);
 	}
-	wait(&g_pid);
-	child_status();
-	close(arg->fd[1]);
-	return (arg->fd[0]);
+	wait(&p->pid);
+	child_status(p);
+	close(end[1]);
+	close(fd);
+	return (end[0]);
 }
 
-void	pipe_list(t_arg *arg)
+void	pipe_list(t_arg *arg, t_param *p)
 {
+	int fd = 0;
 	while (arg)
 	{
-		run_pipe(arg);
+		fd = run_pipe(arg, p, fd);
 		arg = arg->next;
 	}
-	close(arg->fd[0]);
+	close(fd);
 }

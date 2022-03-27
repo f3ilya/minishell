@@ -108,6 +108,42 @@ build CMakeFiles/minishell.dir/pipe.c.o: C_COMPILER__minishell_Debug /home/f3ily
   OBJECT_DIR = CMakeFiles/minishell.dir
   OBJECT_FILE_DIR = CMakeFiles/minishell.dir
 
+build CMakeFiles/minishell.dir/echo.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/echo.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/echo.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/env.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/env.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/env.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/cd.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/cd.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/cd.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/unset.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/unset.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/unset.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/env1.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/env1.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/env1.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/utils.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/utils.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/utils.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target minishell
@@ -116,7 +152,7 @@ build CMakeFiles/minishell.dir/pipe.c.o: C_COMPILER__minishell_Debug /home/f3ily
 #############################################
 # Link the executable minishell
 
-build minishell: C_EXECUTABLE_LINKER__minishell_Debug CMakeFiles/minishell.dir/main.c.o CMakeFiles/minishell.dir/exec.c.o CMakeFiles/minishell.dir/exec_dop.c.o CMakeFiles/minishell.dir/libft_utils.c.o CMakeFiles/minishell.dir/ft_split.c.o CMakeFiles/minishell.dir/pipe.c.o
+build minishell: C_EXECUTABLE_LINKER__minishell_Debug CMakeFiles/minishell.dir/main.c.o CMakeFiles/minishell.dir/exec.c.o CMakeFiles/minishell.dir/exec_dop.c.o CMakeFiles/minishell.dir/libft_utils.c.o CMakeFiles/minishell.dir/ft_split.c.o CMakeFiles/minishell.dir/pipe.c.o CMakeFiles/minishell.dir/echo.c.o CMakeFiles/minishell.dir/env.c.o CMakeFiles/minishell.dir/cd.c.o CMakeFiles/minishell.dir/unset.c.o CMakeFiles/minishell.dir/env1.c.o CMakeFiles/minishell.dir/utils.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/minishell.dir
   POST_BUILD = :

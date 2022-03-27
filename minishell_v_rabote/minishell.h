@@ -11,9 +11,15 @@
 #include <signal.h>
 #include "libft.h"
 
-char	**g_env;
+/*char	**g_env;
 int		g_status;
-pid_t 	g_pid;
+pid_t 	g_pid;*/
+
+typedef struct s_param {
+	char	**env;
+	int		status;
+	pid_t 	pid;
+} t_param;
 
 typedef struct s_arg {
 	char 			**arg;
@@ -23,10 +29,21 @@ typedef struct s_arg {
 } t_arg;
 
 char	**my_path();
-int		err_out(char *str, char *str2, int status, int out);
-int		ft_execve(char **cmd, char *str, int pipe);
-int		exec(char **cmd, int pipe);
-void	child_status(void);
-void	pipe_list(t_arg *arg);
+int		err_out(char *str, char *str2, int status, int out, t_param *p);
+int		ft_execve(char **cmd, char *str, int pipe, t_param *p);
+int		exec(char **cmd, int pipe, t_param *p);
+void	child_status(t_param *p);
+void	pipe_list(t_arg *arg, t_param *p);
+
+int		my_echo(char **cmd, t_param *p);
+int		my_env(t_param *p);
+int		my_cd(char **cmd, t_param *p);
+int 	my_unset(char **cmd, t_param *p);
+
+void	set_env(char *env, char *new_env, t_param *p);
+int		find_env(char *cmd, t_param *p);
+char	**realloc_env(int size, t_param *p);
+
+void	ft_free(char **str);
 
 #endif
