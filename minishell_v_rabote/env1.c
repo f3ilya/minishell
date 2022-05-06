@@ -9,10 +9,12 @@ void	set_env(char *env, char *new_env, t_param *p)
 	{
 		if (!ft_strncmp(p->env[i], env, ft_strlen(env)))
 		{
+			free(p->env[i]);
 			p->env[i] = ft_strjoin(env, new_env);
 			return ;
 		}
 	}
+	p->env = realloc_env(i + 1, p);
 	p->env[i] = ft_strjoin(env, new_env);
 }
 

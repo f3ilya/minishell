@@ -70,10 +70,7 @@ int	main(int argc, char **argv, char **env)
 	char *pwd;
 	char **cmd;
 
-//	cmd = malloc(sizeof(char *) * 2);
-//	cmd[0] = ft_strdup("unset");
-//	cmd[1] = ft_strdup("OLDPWD");
-	cmd = ft_split("unset PWD HOME", ' ');
+	cmd = ft_split("echo $?", ' ');
 
 	while (env[i])
 		i++;
@@ -83,15 +80,16 @@ int	main(int argc, char **argv, char **env)
 		p.env[i] = ft_strdup(env[i]);
 	p.pid = 0;
 	p.status = 0;
-	//arg = initpipe(argv);
-	//printpipe(&arg);
-	//pipe_list(arg, &p);
+//	arg = initpipe(argv);
+//	printpipe(&arg);
+//	pipe_list(arg, &p);
 	exec(argv + 1, 0, &p);
 	exec(cmd, 0, &p);
-	my_env(&p);
+//	my_env(&p);
 	printf("%d\n", p.status);
 //	i = -1;
 //	while (cmd[++i])
 //		printf("%s\n", cmd[i]);
+//	while (1) ;
 	return (0);
 }

@@ -1,5 +1,31 @@
 #include "minishell.h"
 
+int	ft_isdigit(int c)
+{
+	if (c > 47 && c < 58)
+		return (1);
+	return (0);
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c > 64 && c < 91) || (c > 96 && c < 123))
+		return (1);
+	return (0);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != (char)c)
+		i++;
+	if (s[i] == (char) c)
+		return ((char *) s + i);
+	return (NULL);
+}
+
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;

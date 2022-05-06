@@ -63,7 +63,10 @@
 				9,
 				10,
 				11,
-				12
+				12,
+				13,
+				14,
+				15
 			]
 		}
 	],
@@ -107,7 +110,10 @@
 				9,
 				10,
 				11,
-				12
+				12,
+				13,
+				14,
+				15
 			]
 		},
 		{
@@ -195,6 +201,24 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "utils.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "export.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "export_dop.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "exit.c",
 			"sourceGroupIndex" : 0
 		}
 	],

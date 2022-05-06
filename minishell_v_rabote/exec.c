@@ -78,14 +78,14 @@ int	check_builtin(char **cmd, t_param *p)
 		free(pwd);
 		return (1);
 	}
-	/*else if (!ft_strncmp(cmd[0], "export", 7))
-		return (my_export(cmd));*/
+	else if (!ft_strncmp(cmd[0], "export", 7))
+		return (my_export(cmd, p));
 	else if (!ft_strncmp(cmd[0], "unset", 6))
 		return (my_unset(cmd, p));
 	else if (!ft_strncmp(cmd[0], "env", 4))
 		return (my_env(p));
-	/*else if (!ft_strncmp(cmd[0], "exit", 5))
-		my_exit(cmd);*/
+	else if (!ft_strncmp(cmd[0], "exit", 5))
+		my_exit(cmd, p);
 	return (0);
 }
 

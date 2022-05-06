@@ -38,6 +38,9 @@ int		my_echo(char **cmd, t_param *p);
 int		my_env(t_param *p);
 int		my_cd(char **cmd, t_param *p);
 int 	my_unset(char **cmd, t_param *p);
+int		my_export(char **cmd, t_param *p);
+void	my_exit(char **cmd, t_param *p);
+void	sort_env(t_param *p);
 
 void	set_env(char *env, char *new_env, t_param *p);
 int		find_env(char *cmd, t_param *p);

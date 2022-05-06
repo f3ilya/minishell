@@ -29,9 +29,7 @@ int my_unset(char **cmd, t_param *p)
 					p->env = remove_env(index, p);
 			}
 			else
-			{
-				p->status = 1;
-			}
+				err_out(ft_strjoin("unset: `", cmd[i]), "': not a valid identifier", 1, 1, p);
 		}
 	}
 	return (1);

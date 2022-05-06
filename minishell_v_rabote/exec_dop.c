@@ -43,7 +43,7 @@ int	err_out(char *str, char *str2, int status, int out, t_param *p)
 	write(2, str, ft_strlen(str));
 	write(2, str2, ft_strlen(str2));
 	write(2, "\n", 1);
-	if (status != 0)
+	if (status >= 0)
 		p->status = status;
 	return (out);
 }

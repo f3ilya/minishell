@@ -144,6 +144,24 @@ build CMakeFiles/minishell.dir/utils.c.o: C_COMPILER__minishell_Debug /home/f3il
   OBJECT_DIR = CMakeFiles/minishell.dir
   OBJECT_FILE_DIR = CMakeFiles/minishell.dir
 
+build CMakeFiles/minishell.dir/export.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/export.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/export.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/export_dop.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/export_dop.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/export_dop.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
+build CMakeFiles/minishell.dir/exit.c.o: C_COMPILER__minishell_Debug /home/f3ilya/minishell/minishell_v_rabote/exit.c || cmake_object_order_depends_target_minishell
+  DEP_FILE = CMakeFiles/minishell.dir/exit.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/minishell.dir
+  OBJECT_FILE_DIR = CMakeFiles/minishell.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target minishell
@@ -152,7 +170,7 @@ build CMakeFiles/minishell.dir/utils.c.o: C_COMPILER__minishell_Debug /home/f3il
 #############################################
 # Link the executable minishell
 
-build minishell: C_EXECUTABLE_LINKER__minishell_Debug CMakeFiles/minishell.dir/main.c.o CMakeFiles/minishell.dir/exec.c.o CMakeFiles/minishell.dir/exec_dop.c.o CMakeFiles/minishell.dir/libft_utils.c.o CMakeFiles/minishell.dir/ft_split.c.o CMakeFiles/minishell.dir/pipe.c.o CMakeFiles/minishell.dir/echo.c.o CMakeFiles/minishell.dir/env.c.o CMakeFiles/minishell.dir/cd.c.o CMakeFiles/minishell.dir/unset.c.o CMakeFiles/minishell.dir/env1.c.o CMakeFiles/minishell.dir/utils.c.o
+build minishell: C_EXECUTABLE_LINKER__minishell_Debug CMakeFiles/minishell.dir/main.c.o CMakeFiles/minishell.dir/exec.c.o CMakeFiles/minishell.dir/exec_dop.c.o CMakeFiles/minishell.dir/libft_utils.c.o CMakeFiles/minishell.dir/ft_split.c.o CMakeFiles/minishell.dir/pipe.c.o CMakeFiles/minishell.dir/echo.c.o CMakeFiles/minishell.dir/env.c.o CMakeFiles/minishell.dir/cd.c.o CMakeFiles/minishell.dir/unset.c.o CMakeFiles/minishell.dir/env1.c.o CMakeFiles/minishell.dir/utils.c.o CMakeFiles/minishell.dir/export.c.o CMakeFiles/minishell.dir/export_dop.c.o CMakeFiles/minishell.dir/exit.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/minishell.dir
   POST_BUILD = :
