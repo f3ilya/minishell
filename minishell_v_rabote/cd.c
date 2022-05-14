@@ -41,11 +41,11 @@ static int	check_directory(char *cmd, t_param *p)
 	if (!change(cmd, p))
 	{
 		if (stat(cmd, &f) == -1)
-			return (err_out("cd: ", "No such file or directory", 127, 1, p));
+			return (err_out("cd: ", "No such file or directory", 127, 1));
 		else if (!(f.st_mode & S_IXUSR))
-			return (err_out("cd: ", "Permission denied", 1, 1, p));
+			return (err_out("cd: ", "Permission denied", 1, 1));
 		else
-			return (err_out("cd: ", "Not a directory", 1, 1, p));
+			return (err_out("cd: ", "Not a directory", 1, 1));
 	}
 	return (1);
 }
@@ -58,12 +58,12 @@ static int check_path(char *cmd, t_param *p)
 	{
 		tmp = getenv("OLDPWD");
 		if (!tmp)
-			return (err_out("cd: ", "OLDPWD not set", 1, 1, p));
+			return (err_out("cd: ", "OLDPWD not set", 1, 1));
 		check_directory(tmp, p);
 		free(tmp);
 		tmp = getenv("PWD");
 		if (!tmp)
-			return (err_out("cd: ", "PWD not set", 1, 1, p));
+			return (err_out("cd: ", "PWD not set", 1, 1));
 		ft_putendl_fd(tmp, 1);
 		free(tmp);
 		return (1);
@@ -77,12 +77,12 @@ int my_cd(char **cmd, t_param *p)
 
 	home = NULL;
 	if (cmd && cmd[1] && cmd[2])
-		return (err_out(cmd[0], ": too many arguments", 0, 1, p));
+		return (err_out(cmd[0], ": too many arguments", 0, 1));
 	if (!cmd[1] || !ft_strncmp(cmd[1], "~", 2) || !ft_strncmp(cmd[1], "--", 3))
 	{
 		home = getenv("HOME");
 		if (!home)
-			return (err_out(cmd[0], ": HOME not set", 0, 1, p));
+			return (err_out(cmd[0], ": HOME not set", 0, 1));
 		return (check_directory(home, p));
 	}
 	return (check_path(add_home(cmd[1]), p));

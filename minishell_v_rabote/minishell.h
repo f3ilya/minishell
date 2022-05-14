@@ -9,11 +9,14 @@
 #include <sys/fcntl.h>
 #include <string.h>
 #include <signal.h>
+# include <limits.h>
+# include <errno.h>
 #include "libft.h"
+# include "readline/history.h"
+# include "readline/readline.h"
 
-/*char	**g_env;
 int		g_status;
-pid_t 	g_pid;*/
+
 
 typedef struct s_param {
 	char	**env;
@@ -27,8 +30,10 @@ typedef struct s_arg {
 	struct s_arg 	*prev;
 } t_arg;
 
+void    signal_int(int sig);
+
 char	**my_path();
-int		err_out(char *str, char *str2, int status, int out, t_param *p);
+int		err_out(char *str, char *str2, int status, int out);
 int		ft_execve(char **cmd, char *str, int pipe, t_param *p);
 int		exec(char **cmd, int pipe, t_param *p);
 void	child_status(t_param *p);
@@ -39,8 +44,9 @@ int		my_env(t_param *p);
 int		my_cd(char **cmd, t_param *p);
 int 	my_unset(char **cmd, t_param *p);
 int		my_export(char **cmd, t_param *p);
-void	my_exit(char **cmd, t_param *p);
+void	my_exit(char **cmd);
 void	sort_env(t_param *p);
+void	ft_exit(void);
 
 void	set_env(char *env, char *new_env, t_param *p);
 int		find_env(char *cmd, t_param *p);

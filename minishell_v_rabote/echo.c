@@ -20,7 +20,7 @@ int my_echo(char **cmd, t_param *p)
 	int n;
 	int i;
 
-	p->status = 0;
+	g_status = 0;
 	if (!cmd[1])
 	{
 		ft_putchar_fd('\n', 1);

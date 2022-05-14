@@ -5,7 +5,7 @@ int my_env(t_param *p)
 	int i;
 
 	i = -1;
-	p->status = 0;
+	g_status = 0;
 	while (p->env[++i])
 	{
 		if (ft_strchr(p->env[i], '='))

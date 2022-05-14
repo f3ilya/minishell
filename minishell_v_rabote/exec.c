@@ -9,17 +9,17 @@ static int	check(char **args, int pipe, t_param *p)
 	{
 		flag = f.st_mode & S_IFMT;
 		if (flag == S_IFDIR && (args[0][ft_strlen(args[0]) - 1] == '/' || !ft_strncmp(args[0], "./", 2)))
-			return (err_out(args[0], ": Is a directory", 126, 0, p));
+			return (err_out(args[0], ": Is a directory", 126, 0));
 		else if ((!ft_strncmp(args[0], "./", 2) || !ft_strncmp(args[0], "/", 1)) && (f.st_mode & S_IXUSR) && (f.st_mode & S_IRUSR))
 			return (ft_execve(args, ft_strdup(args[0]), pipe, p));
 		else if (flag != S_IXUSR && flag != S_IRUSR && flag != S_IFDIR && flag != S_IFLNK)
-			return (err_out(args[0], ": Permission denied", 126, 0, p));
+			return (err_out(args[0], ": Permission denied", 126, 0));
 	}
 	else if (!ft_strncmp(args[0], "./", 2) || args[0][0] == '/')
 	{
-		return (err_out(args[0], ": No such file or directory", 127, 0, p));
+		return (err_out(args[0], ": No such file or directory", 127, 0));
 	}
-	return (err_out(args[0], ": command not found", 127, 0, p));
+	return (err_out(args[0], ": command not found", 127, 0));
 }
 
 int	check_stat(char **cmd, char *str, struct stat stat, int pipe, t_param *p)
@@ -29,10 +29,10 @@ int	check_stat(char **cmd, char *str, struct stat stat, int pipe, t_param *p)
 		if (stat.st_mode & S_IXUSR)
 			return (ft_execve(cmd, str, pipe, p));
 		else
-			return (err_out("permission denied: ", str, 1, 1, p));
+			return (err_out("permission denied: ", str, 1, 1));
 	}
 	else
-		return (err_out("is a directory: ", cmd[0], 1, 1, p));
+		return (err_out("is a directory: ", cmd[0], 1, 1));
 }
 
 int	check_bin(char **cmd, int pipe, t_param *p)
@@ -85,7 +85,7 @@ int	check_builtin(char **cmd, t_param *p)
 	else if (!ft_strncmp(cmd[0], "env", 4))
 		return (my_env(p));
 	else if (!ft_strncmp(cmd[0], "exit", 5))
-		my_exit(cmd, p);
+		my_exit(cmd);
 	return (0);
 }
 

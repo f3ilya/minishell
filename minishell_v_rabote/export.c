@@ -39,7 +39,7 @@ int	my_export(char **cmd, t_param *p)
 {
 	int i;
 
-	p->status = 0;
+	g_status = 0;
 	i = 0;
 	if (cmd[1])
 	{
@@ -52,7 +52,7 @@ int	my_export(char **cmd, t_param *p)
 				ft_putstr_fd("minishell: export: `", 1);
 				ft_putstr_fd(cmd[i], 1);
 				ft_putendl_fd("': not a valid identifier", 1);
-				p->status = 1;
+				g_status = 1;
 			}
 		}
 	}

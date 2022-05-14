@@ -16,7 +16,7 @@ int my_unset(char **cmd, t_param *p)
 	int i;
 	int index;
 
-	p->status = 0;
+	g_status = 0;
 	if (cmd[1])
 	{
 		i = 0;
@@ -29,7 +29,12 @@ int my_unset(char **cmd, t_param *p)
 					p->env = remove_env(index, p);
 			}
 			else
-				err_out(ft_strjoin("unset: `", cmd[i]), "': not a valid identifier", 1, 1, p);
+			{
+				ft_putstr_fd("minishell: unset: `", 1);
+				ft_putstr_fd(cmd[i], 1);
+				ft_putendl_fd("': not a valid identifier", 1);
+				g_status = 1;
+			}
 		}
 	}
 	return (1);

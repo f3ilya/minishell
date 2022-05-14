@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void    signal_int(int sig)
+{
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 1);
+	rl_redisplay();
+}
+
 t_arg	*ft_lstnw(char *str)
 {
 	t_arg	*elem;
@@ -72,6 +80,7 @@ int	main(int argc, char **argv, char **env)
 
 	cmd = ft_split("echo $?", ' ');
 
+	g_status = 0;
 	while (env[i])
 		i++;
 	p.env = malloc(sizeof (char *) * (i + 1));
@@ -80,13 +89,13 @@ int	main(int argc, char **argv, char **env)
 		p.env[i] = ft_strdup(env[i]);
 	p.pid = 0;
 	p.status = 0;
-//	arg = initpipe(argv);
+	arg = initpipe(argv);
 //	printpipe(&arg);
-//	pipe_list(arg, &p);
-	exec(argv + 1, 0, &p);
-	exec(cmd, 0, &p);
+	pipe_list(arg, &p);
+//	exec(argv + 1, 0, &p);
+//	exec(cmd, 0, &p);
 //	my_env(&p);
-	printf("%d\n", p.status);
+//	printf("%d\n", p.status);
 //	i = -1;
 //	while (cmd[++i])
 //		printf("%s\n", cmd[i]);

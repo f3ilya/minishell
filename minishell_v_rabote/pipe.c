@@ -18,6 +18,7 @@ int run_pipe(t_arg *arg, t_param *p, int fd)
 
 	if (pipe(end))
 		return (-1);
+	signal(SIGINT, SIG_IGN);
 	p->pid = fork();
 	if (p->pid < 0)
 	{
@@ -30,6 +31,7 @@ int run_pipe(t_arg *arg, t_param *p, int fd)
 	{
 		child(arg, fd, end);
 		exec(arg->arg, 1, p);
+		ft_exit();
 	}
 	close(end[1]);
 	close(fd);
@@ -40,13 +42,15 @@ void	pipe_list(t_arg *arg, t_param *p)
 {
 	int fd;
 
-	fd = 0;
+	fd = dup(0);
 	while (arg)
 	{
 		fd = run_pipe(arg, p, fd);
 		arg = arg->next;
 	}
+	dup2(fd, STDOUT_FILENO);
 	wait(&p->pid);
 	child_status(p);
+	signal(SIGINT, signal_int);
 	close(fd);
 }
