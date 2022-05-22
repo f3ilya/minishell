@@ -11,10 +11,10 @@ char	**remove_env(int index, t_param *p)
 	return (realloc_env(index, p));
 }
 
-int my_unset(char **cmd, t_param *p)
+int	my_unset(char **cmd, t_param *p)
 {
-	int i;
-	int index;
+	int	i;
+	int	index;
 
 	g_status = 0;
 	if (cmd[1])

@@ -12,8 +12,8 @@
 # include <limits.h>
 # include <errno.h>
 #include "libft.h"
-# include "readline/history.h"
-# include "readline/readline.h"
+//# include "readline/history.h"
+//# include "readline/readline.h"
 
 int		g_status;
 

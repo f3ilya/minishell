@@ -1,24 +1,25 @@
 #include "minishell.h"
 
-int check_n(char **cmd)
+int	check_n(char **cmd)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (cmd[++i])
 	{
 		j = 0;
-		if (cmd[i][j++] == '-' && cmd[i][j] && cmd[i][j] == 'n' && !cmd[i][j + 1])
+		if (cmd[i][j++] == '-' && cmd[i][j] && cmd[i][j] == 'n'
+			&& !cmd[i][j + 1])
 			return (1);
 	}
 	return (0);
 }
 
-int my_echo(char **cmd, t_param *p)
+int	my_echo(char **cmd, t_param *p)
 {
-	int n;
-	int i;
+	int	n;
+	int	i;
 
 	g_status = 0;
 	if (!cmd[1])

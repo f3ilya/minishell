@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int my_env(t_param *p)
+int	my_env(t_param *p)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	g_status = 0;

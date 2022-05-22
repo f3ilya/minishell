@@ -1,9 +1,9 @@
 #include "minishell.h"
 
-static int check_export(char *name)
+static int	check_export(char *name)
 {
 	int	i;
-	int t;
+	int	t;
 
 	i = -1;
 	t = 0;
@@ -21,7 +21,7 @@ static int check_export(char *name)
 
 static void	add_export(char *cmd, t_param *p)
 {
-	int 	i;
+	int		i;
 	char	*end;
 
 	i = 0;
@@ -32,12 +32,11 @@ static void	add_export(char *cmd, t_param *p)
 		set_env(ft_substr(cmd, 0, i + 1), end + 1, p);
 	else
 		set_env(cmd, end, p);
-
 }
 
 int	my_export(char **cmd, t_param *p)
 {
-	int i;
+	int	i;
 
 	g_status = 0;
 	i = 0;

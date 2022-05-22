@@ -37,7 +37,7 @@ int	ft_execve(char **cmd, char *str, int pipe, t_param *p)
 	return (1);
 }
 
-char	**my_path()
+char	**my_path(void)
 {
 	char	*env;
 	char	**path;

@@ -12,9 +12,9 @@ void	child(t_arg *arg, int fd, int end[2])
 	}
 }
 
-int run_pipe(t_arg *arg, t_param *p, int fd)
+int	run_pipe(t_arg *arg, t_param *p, int fd)
 {
-	int end[2];
+	int	end[2];
 
 	if (pipe(end))
 		return (-1);
@@ -40,7 +40,7 @@ int run_pipe(t_arg *arg, t_param *p, int fd)
 
 void	pipe_list(t_arg *arg, t_param *p)
 {
-	int fd;
+	int	fd;
 
 	fd = dup(0);
 	while (arg)

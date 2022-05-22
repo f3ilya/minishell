@@ -8,11 +8,14 @@ static int	check(char **args, int pipe, t_param *p)
 	if (lstat(args[0], &f) != -1)
 	{
 		flag = f.st_mode & S_IFMT;
-		if (flag == S_IFDIR && (args[0][ft_strlen(args[0]) - 1] == '/' || !ft_strncmp(args[0], "./", 2)))
+		if (flag == S_IFDIR && (args[0][ft_strlen(args[0]) - 1] == '/'
+			|| !ft_strncmp(args[0], "./", 2)))
 			return (err_out(args[0], ": Is a directory", 126, 0));
-		else if ((!ft_strncmp(args[0], "./", 2) || !ft_strncmp(args[0], "/", 1)) && (f.st_mode & S_IXUSR) && (f.st_mode & S_IRUSR))
+		else if ((!ft_strncmp(args[0], "./", 2) || !ft_strncmp(args[0], "/", 1))
+			&& (f.st_mode & S_IXUSR) && (f.st_mode & S_IRUSR))
 			return (ft_execve(args, ft_strdup(args[0]), pipe, p));
-		else if (flag != S_IXUSR && flag != S_IRUSR && flag != S_IFDIR && flag != S_IFLNK)
+		else if (flag != S_IXUSR && flag != S_IRUSR
+			&& flag != S_IFDIR && flag != S_IFLNK)
 			return (err_out(args[0], ": Permission denied", 126, 0));
 	}
 	else if (!ft_strncmp(args[0], "./", 2) || args[0][0] == '/')
@@ -29,10 +32,16 @@ int	check_stat(char **cmd, char *str, struct stat stat, int pipe, t_param *p)
 		if (stat.st_mode & S_IXUSR)
 			return (ft_execve(cmd, str, pipe, p));
 		else
-			return (err_out("permission denied: ", str, 1, 1));
+		{
+			ft_putstr_fd("minishell: execve: permission denied: ", 2);
+			ft_putendl_fd(str, 2);
+			g_status = 1;
+			free(str);
+			return (1);
+		}
 	}
 	else
-		return (err_out("is a directory: ", cmd[0], 1, 1));
+		return (err_out(cmd[0], ": Is a directory", 1, 1));
 }
 
 int	check_bin(char **cmd, int pipe, t_param *p)
@@ -65,7 +74,7 @@ int	check_bin(char **cmd, int pipe, t_param *p)
 
 int	check_builtin(char **cmd, t_param *p)
 {
-	char *pwd;
+	char	*pwd;
 
 	if (!ft_strncmp(cmd[0], "echo", 5))
 		return (my_echo(cmd, p));
@@ -91,7 +100,7 @@ int	check_builtin(char **cmd, t_param *p)
 
 int	exec(char **cmd, int pipe, t_param *p)
 {
-	int ret1;
+	int	ret1;
 	int	ret2;
 
 	if (!cmd || !cmd[0] || cmd[0][0] == '\0')
@@ -104,8 +113,8 @@ int	exec(char **cmd, int pipe, t_param *p)
 	ret2 = check_bin(cmd, pipe, p);
 	if (ret2)
 		return (ret2);
-	/*if (check_builtin(cmd) || check_bin(cmd, pipe))
-		return (1);*/
+	if (ret2 < 0)
+		return (-1);
 	check(cmd, pipe, p);
-	return (10);
+	return (0);
 }

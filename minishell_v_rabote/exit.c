@@ -25,7 +25,7 @@ int	ft_atoi_exit(const char *str)
 	k = 1;
 	n = 0;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		   || str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
 	if (str[i] == '-')
 		k = -1;
@@ -42,7 +42,7 @@ int	ft_atoi_exit(const char *str)
 
 void	exit_check(char *cmd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (cmd[i] == '+' || cmd[i] == '-')

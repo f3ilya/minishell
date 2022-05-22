@@ -2,7 +2,7 @@
 
 void	set_env(char *env, char *new_env, t_param *p)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (p->env[++i])
@@ -18,9 +18,9 @@ void	set_env(char *env, char *new_env, t_param *p)
 	p->env[i] = ft_strjoin(env, new_env);
 }
 
-int find_env(char *cmd, t_param *p)
+int	find_env(char *cmd, t_param *p)
 {
-	int 	i;
+	int		i;
 	size_t	size;
 
 	i = -1;
@@ -35,7 +35,7 @@ int find_env(char *cmd, t_param *p)
 
 char	**realloc_env(int size, t_param *p)
 {
-	int 	i;
+	int		i;
 	char	**new;
 
 	i = -1;

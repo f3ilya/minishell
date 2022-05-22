@@ -3,8 +3,8 @@
 static void	print_export(char **env)
 {
 	int	i;
-	int j;
-	int t;
+	int	j;
+	int	t;
 
 	i = -1;
 	while (env[++i])
@@ -29,7 +29,7 @@ static void	print_export(char **env)
 
 static char	**envdup(t_param *p)
 {
-	int 	i;
+	int		i;
 	char	**new;
 
 	i = 0;

@@ -1,9 +1,9 @@
 #include "minishell.h"
 
-static char *add_home(char *cmd)
+static char	*add_home(char *cmd)
 {
-	char *home;
-	char *tmp;
+	char	*home;
+	char	*tmp;
 
 	if (!ft_strncmp(cmd, "~/", 2))
 	{
@@ -17,9 +17,9 @@ static char *add_home(char *cmd)
 	return (cmd);
 }
 
-static int change(char *cmd, t_param *p)
+static int	change(char *cmd, t_param *p)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	if (!chdir(cmd))
@@ -36,7 +36,7 @@ static int change(char *cmd, t_param *p)
 
 static int	check_directory(char *cmd, t_param *p)
 {
-	struct stat f;
+	struct stat	f;
 
 	if (!change(cmd, p))
 	{
@@ -50,9 +50,9 @@ static int	check_directory(char *cmd, t_param *p)
 	return (1);
 }
 
-static int check_path(char *cmd, t_param *p)
+static int	check_path(char *cmd, t_param *p)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (!ft_strncmp(cmd, "-", 2))
 	{
@@ -71,9 +71,9 @@ static int check_path(char *cmd, t_param *p)
 	return (check_directory(cmd, p));
 }
 
-int my_cd(char **cmd, t_param *p)
+int	my_cd(char **cmd, t_param *p)
 {
-	char *home;
+	char	*home;
 
 	home = NULL;
 	if (cmd && cmd[1] && cmd[2])
