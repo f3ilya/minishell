@@ -78,8 +78,8 @@ int	main(int argc, char **argv, char **env)
 	char *pwd;
 	char **cmd;
 
-	cmd = ft_split("echo $?", ' ');
-
+//	cmd = ft_split("echo $?", ' ');
+//	pwd = getcwd(NULL, 0);
 	g_status = 0;
 	while (env[i])
 		i++;
@@ -89,13 +89,13 @@ int	main(int argc, char **argv, char **env)
 		p.env[i] = ft_strdup(env[i]);
 	p.pid = 0;
 	p.status = 0;
-//	arg = initpipe(argv);
+	arg = initpipe(argv);
 //	printpipe(&arg);
-//	pipe_list(arg, &p);
-	exec(argv + 1, 0, &p);
+	pipe_list(arg, &p);
+//	exec(argv + 1, 0, &p);
 //	exec(cmd, 0, &p);
 //	my_env(&p);
-//	printf("%d\n", p.status);
+//	printf("%s\n", pwd);
 //	i = -1;
 //	while (cmd[++i])
 //		printf("%s\n", cmd[i]);

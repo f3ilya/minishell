@@ -58,7 +58,7 @@ int	execute(char *input, char **env, t_param *p)
 	if (pipe)
 		pipe_list(stack, p);
 	else
-		exec(stack->com, 0, p);
+		exec(stack->com, p);
 	return (0);
 }
 

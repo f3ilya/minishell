@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-void	ft_exit(void)
+void	ft_exit(int ex)
 {
-	ft_putendl_fd("exit", 1);
+	if (ex)
+		ft_putendl_fd("exit", 1);
 	exit(g_status);
 }
 
@@ -23,7 +24,7 @@ void	exit_error(char *cmd)
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(": numeric argument required", 2);
 	g_status = 2;
-	ft_exit();
+	ft_exit(1);
 }
 
 int	ft_atoi_exit(const char *str)
@@ -46,7 +47,7 @@ int	ft_atoi_exit(const char *str)
 	{
 		n = n * 10 + k * (str[i++] - 48);
 		if ((k == 1 && n < 0 && i > 18) || (k == -1 && n > 0 && i > 19))
-			exit_error(str);
+			exit_error((char *)str);
 	}
 	return (n);
 }
@@ -72,11 +73,11 @@ void	my_exit(char **cmd)
 {
 	g_status = 0;
 	if (!cmd[1])
-		ft_exit();
+		ft_exit(1);
 	exit_check(cmd[1]);
 	if (cmd && cmd[1] && cmd[2])
 		err_out(cmd[0], ": too many arguments", 1, 1);
 	else
 		g_status = ft_atoi_exit(cmd[1]) % 256;
-	ft_exit();
+	ft_exit(1);
 }

@@ -16,15 +16,15 @@ int	ft_execve(char **cmd, char *str, int pipe, t_param *p)
 {
 	if (!pipe)
 	{
-		signal(SIGINT, SIG_IGN);
+//		signal(SIGINT, SIG_IGN);
 		p->pid = fork();
 	}
 	if (!pipe && p->pid < 0)
 		return (err_out("execve: ", "failed to create a new process.", 1, -1));
 	if (!p->pid)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+//		signal(SIGINT, SIG_DFL);
+//		signal(SIGQUIT, SIG_DFL);
 		if (execve(str, cmd, p->env) == -1)
 			return (err_out("command not found: ", cmd[0], 127, -1));
 	}
@@ -32,7 +32,7 @@ int	ft_execve(char **cmd, char *str, int pipe, t_param *p)
 		return (1);
 	wait(&p->pid);
 	child_status(p);
-	signal(SIGINT, signal_int);
+//	signal(SIGINT, signal_int);
 	p->pid = 0;
 	return (1);
 }

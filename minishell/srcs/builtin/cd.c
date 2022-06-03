@@ -71,12 +71,10 @@ static int	check_path(char *cmd, t_param *p)
 		if (!tmp)
 			return (err_out("cd: ", "OLDPWD not set", 1, 1));
 		check_directory(tmp, p);
-		free(tmp);
 		tmp = getenv("PWD");
 		if (!tmp)
 			return (err_out("cd: ", "PWD not set", 1, 1));
 		ft_putendl_fd(tmp, 1);
-		free(tmp);
 		return (1);
 	}
 	return (check_directory(cmd, p));

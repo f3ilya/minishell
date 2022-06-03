@@ -20,13 +20,8 @@ int		g_status;
 typedef struct s_param {
 	char	**env;
 	pid_t 	pid;
+	int		pipe;
 } t_param;
-
-typedef struct s_arg {
-	char 			**arg;
-	struct s_arg 	*next;
-	struct s_arg 	*prev;
-} t_arg;
 
 typedef struct s_list2
 {
@@ -42,8 +37,8 @@ void    signal_int(int sig);
 
 char	**my_path();
 int		err_out(char *str, char *str2, int status, int out);
-int		ft_execve(char **cmd, char *str, int pipe, t_param *p);
-int		exec(char **cmd, int pipe, t_param *p);
+int		ft_execve(char **cmd, char *str, t_param *p);
+int		exec(char **cmd, t_param *p);
 void	child_status(t_param *p);
 void	pipe_list(t_list2 *arg, t_param *p);
 
@@ -54,7 +49,7 @@ int 	my_unset(char **cmd, t_param *p);
 int		my_export(char **cmd, t_param *p);
 void	my_exit(char **cmd);
 void	sort_env(t_param *p);
-void	ft_exit(void);
+void	ft_exit(int ex);
 
 void	set_env(char *env, char *new_env, t_param *p);
 int		find_env(char *cmd, t_param *p);

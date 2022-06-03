@@ -40,9 +40,9 @@ static void	add_export(char *cmd, t_param *p)
 		i++;
 	end = ft_strchr(cmd, '=');
 	if (end)
-		set_env(ft_substr(cmd, 0, i + 1), end + 1, p);
+		set_env(ft_substr(cmd, 0, i), end, p);
 	else
-		set_env(cmd, end, p);
+		set_env(cmd, "", p);
 }
 
 int	my_export(char **cmd, t_param *p)

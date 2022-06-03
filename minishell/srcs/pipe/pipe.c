@@ -21,6 +21,8 @@ void	child(t_list2 *arg, int fd, int end[2])
 		dup2(end[1], STDOUT_FILENO);
 		close(end[1]);
 	}
+//	else
+//		dup2(fd, STDOUT_FILENO);
 }
 
 int	run_pipe(t_list2 *arg, t_param *p, int fd)
@@ -41,8 +43,9 @@ int	run_pipe(t_list2 *arg, t_param *p, int fd)
 	else if (!p->pid)
 	{
 		child(arg, fd, end);
-		exec(arg->com, 1, p);
-		ft_exit();
+		p->pipe = 1;
+		exec(arg->com, p);
+		ft_exit(0);
 	}
 	close(end[1]);
 	close(fd);
@@ -59,9 +62,12 @@ void	pipe_list(t_list2 *arg, t_param *p)
 		fd = run_pipe(arg, p, fd);
 		arg = arg->next;
 	}
-	dup2(fd, STDOUT_FILENO);
+//	close(fd);
+//	dup2(fd, STDOUT_FILENO);
 	wait(&p->pid);
 	child_status(p);
 	signal(SIGINT, signal_int);
+	dup2(fd, STDOUT_FILENO);
+	//p->pipe = 0;
 	close(fd);
 }

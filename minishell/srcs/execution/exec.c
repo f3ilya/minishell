@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-static int	check(char **args, int pipe, t_param *p)
+static int	check(char **args, t_param *p)
 {
 	struct stat	f;
 	int			flag;
@@ -24,7 +24,7 @@ static int	check(char **args, int pipe, t_param *p)
 			return (err_out(args[0], ": Is a directory", 126, 0));
 		else if ((!ft_strncmp(args[0], "./", 2) || !ft_strncmp(args[0], "/", 1))
 			&& (f.st_mode & S_IXUSR) && (f.st_mode & S_IRUSR))
-			return (ft_execve(args, ft_strdup(args[0]), pipe, p));
+			return (ft_execve(args, ft_strdup(args[0]), p));
 		else if (flag != S_IXUSR && flag != S_IRUSR
 			&& flag != S_IFDIR && flag != S_IFLNK)
 			return (err_out(args[0], ": Permission denied", 126, 0));
@@ -36,12 +36,12 @@ static int	check(char **args, int pipe, t_param *p)
 	return (err_out(args[0], ": command not found", 127, 0));
 }
 
-int	check_stat(char **cmd, char *str, struct stat stat, int pipe, t_param *p)
+int	check_stat(char **cmd, char *str, struct stat stat, t_param *p)
 {
 	if (stat.st_mode & S_IFREG)
 	{
 		if (stat.st_mode & S_IXUSR)
-			return (ft_execve(cmd, str, pipe, p));
+			return (ft_execve(cmd, str, p));
 		else
 		{
 			ft_putstr_fd("minishell: execve: permission denied: ", 2);
@@ -55,7 +55,7 @@ int	check_stat(char **cmd, char *str, struct stat stat, int pipe, t_param *p)
 		return (err_out(cmd[0], ": Is a directory", 1, 1));
 }
 
-int	check_bin(char **cmd, int pipe, t_param *p)
+int	check_bin(char **cmd, t_param *p)
 {
 	struct stat	stat;
 	char		**path;
@@ -77,7 +77,7 @@ int	check_bin(char **cmd, int pipe, t_param *p)
 			str = ft_strjoin(tmp, cmd[0]);
 		}
 		if (!lstat(str, &stat))
-			return (check_stat(cmd, str, stat, pipe, p));
+			return (check_stat(cmd, str, stat, p));
 		free(str);
 	}
 	return (0);
@@ -109,7 +109,7 @@ int	check_builtin(char **cmd, t_param *p)
 	return (0);
 }
 
-int	exec(char **cmd, int pipe, t_param *p)
+int	exec(char **cmd, t_param *p)
 {
 	int	ret1;
 	int	ret2;
@@ -121,11 +121,11 @@ int	exec(char **cmd, int pipe, t_param *p)
 		return (ret1);
 	if (ret1 < 0)
 		return (-1);
-	ret2 = check_bin(cmd, pipe, p);
+	ret2 = check_bin(cmd, p);
 	if (ret2)
 		return (ret2);
 	if (ret2 < 0)
 		return (-1);
-	check(cmd, pipe, p);
+	check(cmd, p);
 	return (0);
 }

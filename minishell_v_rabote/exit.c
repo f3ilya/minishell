@@ -35,7 +35,7 @@ int	ft_atoi_exit(const char *str)
 	{
 		n = n * 10 + k * (str[i++] - 48);
 		if ((k == 1 && n < 0 && i > 18) || (k == -1 && n > 0 && i > 19))
-			exit_error(str);
+			exit_error((char *)str);
 	}
 	return (n);
 }

@@ -38,7 +38,7 @@ int	find_env(char *cmd, t_param *p)
 	size = ft_strlen(cmd);
 	while (p->env[++i])
 	{
-		if (!ft_strncmp(p->env[i], cmd, size) && p->env[i][size] == '=')
+		if (!ft_strncmp(p->env[i], cmd, size) && (p->env[i][size] == '=' || p->env[i][size] == '\0'))
 			return (i);
 	}
 	return (-1);

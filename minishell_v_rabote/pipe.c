@@ -18,7 +18,7 @@ int	run_pipe(t_arg *arg, t_param *p, int fd)
 
 	if (pipe(end))
 		return (-1);
-	signal(SIGINT, SIG_IGN);
+//	signal(SIGINT, SIG_IGN);
 	p->pid = fork();
 	if (p->pid < 0)
 	{
@@ -51,6 +51,6 @@ void	pipe_list(t_arg *arg, t_param *p)
 	dup2(fd, STDOUT_FILENO);
 	wait(&p->pid);
 	child_status(p);
-	signal(SIGINT, signal_int);
+//	signal(SIGINT, signal_int);
 	close(fd);
 }
