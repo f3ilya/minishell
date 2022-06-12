@@ -78,6 +78,7 @@ int	check_bin(char **cmd, t_param *p)
 		}
 		if (!lstat(str, &stat))
 			return (check_stat(cmd, str, stat, p));
+
 		free(str);
 	}
 	return (0);

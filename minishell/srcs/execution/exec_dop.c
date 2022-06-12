@@ -70,3 +70,17 @@ int	err_out(char *str, char *str2, int status, int out)
 		g_status = status;
 	return (out);
 }
+
+void	fd_on(t_list2 *stack, int off)
+{
+	if (off)
+	{
+		dup2(stack->fdd0, STDIN_FILENO);
+		dup2(stack->fdd1, STDOUT_FILENO);
+	}
+	else
+	{
+		dup2(stack->fd0, STDIN_FILENO);
+		dup2(stack->fd1, STDOUT_FILENO);
+	}
+}

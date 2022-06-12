@@ -25,6 +25,8 @@ typedef struct s_param {
 
 typedef struct s_list2
 {
+	int				fdd0;
+	int				fdd1;
 	int				fd0;
 	int				fd1;
 	char			*pre_com;
@@ -41,6 +43,7 @@ int		ft_execve(char **cmd, char *str, t_param *p);
 int		exec(char **cmd, t_param *p);
 void	child_status(t_param *p);
 void	pipe_list(t_list2 *arg, t_param *p);
+void	fd_on(t_list2 *stack, int off);
 
 int		my_echo(char **cmd, t_param *p);
 int		my_env(t_param *p);

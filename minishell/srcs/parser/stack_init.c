@@ -35,11 +35,12 @@ char	*stack_add_elem(char *s, int *i, t_list2 **stack)
 	if (s[*i] == '|')
 		pipe = 1;
 	ft_lstadd_back2(stack, ft_lstnew2(ft_substr(s, 0, *i), pipe));
-	while ((s[*i + 1] == ' ' || s[*i + 1] == '\t'))
+	while ((s[*i + 1] == ' ' || s[*i + 1] == '\t' || s[*i + 1] == '|'))
 		(*i)++;
 	new_s = ft_strdup(s + *i + 1);
 	free(s);
-	*i = 0;
+	*i = -1;
+
 	return (new_s);
 }
 
@@ -53,12 +54,16 @@ int	stack_init(char *s, t_list2 **stack)
 	while (s[++i])
 	{
 		if (s[i] == '|' || s[i] == ';')
+		{
 			s = stack_add_elem(s, &i, stack);
+			continue ;
+		}
 		if (s[i] == '\'' || s[i] == '\"')
 			gaps_redir(s, &i);
 		if (s[i] == '\\' && s[i + 1] != '\0')
 			i += 1;
 	}
-	ft_lstadd_back2(stack, ft_lstnew2(s, 0));
+	if (*s != '\0')
+		ft_lstadd_back2(stack, ft_lstnew2(s, 0));
 	return (0);
 }

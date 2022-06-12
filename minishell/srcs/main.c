@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
+static void	execute2(t_list2 *stack, t_param *p, int pipe)
+{
+	stack->fdd0 = dup(STDIN_FILENO);
+	stack->fdd1 = dup(STDOUT_FILENO);
+	fd_on(stack, 0);
+	if (pipe)
+		pipe_list(stack, p);
+	else
+		exec(ft_split(stack->pre_com, ' '), p);
+	fd_on(stack, 1);
+}
+
 void    signal_int(int sig)
 {
 	printf("\n");
@@ -55,10 +67,7 @@ int	execute(char *input, char **env, t_param *p)
 			pipe = 1;
 		lst = lst->next;
 	}
-	if (pipe)
-		pipe_list(stack, p);
-	else
-		exec(stack->com, p);
+	execute2(stack, p, pipe);
 	return (0);
 }
 
@@ -66,7 +75,6 @@ int main(int argc, char **argv, char **env)
 {
 	char	*input;
 	char	*shell_prompt;
-	int		ret;
 	int		i;
 	t_param	p;
 
@@ -81,11 +89,14 @@ int main(int argc, char **argv, char **env)
 		input = readline(shell_prompt);
 		if (!input)
 			break;
+		if (input[0] == '\0')
+			continue;
+//		printf("1\n");
 		add_history(input);
-		ret = execute(input, env, &p);
-		if (ret)
-			return (ret);
-		free(input);
+		//printf("%s", input);
+		execute(input, env, &p);
+//		free(input);
+//		printf("3\n");
 	}
 	return (0);
 }

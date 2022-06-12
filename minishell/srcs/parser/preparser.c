@@ -62,7 +62,7 @@ int	pre_parser(char *s)
 	}
 	if (error)
 		return (error);
-	if (s[i - 1] == '\\')
+	if (s[i - 1] == '\\' || s[i - 1] == '|')
 		error += print_error("synthax error near unexpected token", s[i - 1]);
 	return (error);
 }

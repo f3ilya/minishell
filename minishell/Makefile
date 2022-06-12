@@ -17,7 +17,7 @@ RM		= rm -f
 LIB		= -L./libft/ -lft
 
 #CFLAGS	= -Wall -Wextra -Werror ${HEADER}
-CFLAGS	= ${HEADER}
+CFLAGS	= ${HEADER} -g
 
 RDLN	= /Users/snakita/.brew/Cellar/readline/8.1.2/
 
