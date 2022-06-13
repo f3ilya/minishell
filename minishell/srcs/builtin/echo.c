@@ -32,7 +32,6 @@ int	my_echo(char **cmd, t_param *p)
 	int	n;
 	int	i;
 
-	g_status = 0;
 	if (!cmd[1])
 	{
 		ft_putchar_fd('\n', 1);
@@ -42,11 +41,16 @@ int	my_echo(char **cmd, t_param *p)
 	n = i++;
 	while (cmd[i])
 	{
-		ft_putstr_fd(cmd[i++], 1);
+		if (!ft_strncmp(cmd[i], "$?", 3))
+			ft_putnbr_fd(g_status, 1);
+		else
+			ft_putstr_fd(cmd[i], 1);
+		i++;
 		if (cmd[i])
 			ft_putchar_fd(' ', 1);
 	}
 	if (!n)
 		ft_putchar_fd('\n', 1);
+	g_status = 0;
 	return (1);
 }

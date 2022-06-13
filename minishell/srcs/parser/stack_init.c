@@ -40,7 +40,6 @@ char	*stack_add_elem(char *s, int *i, t_list2 **stack)
 	new_s = ft_strdup(s + *i + 1);
 	free(s);
 	*i = -1;
-
 	return (new_s);
 }
 

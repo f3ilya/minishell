@@ -37,7 +37,10 @@ int	ft_execve(char **cmd, char *str, t_param *p)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (execve(str, cmd, p->env) == -1)
-			return (err_out("command not found: ", cmd[0], 127, -1));
+		{
+			err_out("command not found: ", cmd[0], 127, -1);
+			ft_exit(0);
+		}
 	}
 	if (p->pipe)
 		return (1);

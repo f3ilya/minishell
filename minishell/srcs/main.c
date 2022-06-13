@@ -23,7 +23,7 @@ static void	execute2(t_list2 *stack, t_param *p, int pipe)
 	fd_on(stack, 1);
 }
 
-void    signal_int(int sig)
+void	signal_int(int sig)
 {
 	printf("\n");
 	rl_on_new_line();
@@ -33,7 +33,7 @@ void    signal_int(int sig)
 
 void	param_init(char **env, t_param *p)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (env[n])
@@ -50,7 +50,7 @@ int	execute(char *input, char **env, t_param *p)
 {
 	int		n;
 	int		pipe;
-	t_list2 *stack;
+	t_list2	*stack;
 	t_list2	*lst;
 
 	stack = NULL;
@@ -71,7 +71,7 @@ int	execute(char *input, char **env, t_param *p)
 	return (0);
 }
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	char	*input;
 	char	*shell_prompt;
@@ -83,20 +83,16 @@ int main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	g_status = 0;
 	i = -1;
-	while(++i >= 0)
+	while (++i >= 0)
 	{
 		shell_prompt = "minishell> ";
 		input = readline(shell_prompt);
 		if (!input)
-			break;
+			break ;
 		if (input[0] == '\0')
-			continue;
-//		printf("1\n");
+			continue ;
 		add_history(input);
-		//printf("%s", input);
 		execute(input, env, &p);
-//		free(input);
-//		printf("3\n");
 	}
 	return (0);
 }

@@ -47,4 +47,3 @@ void	ft_free(char **str)
 			free(str[i]);
 	}
 }
-
