@@ -66,3 +66,17 @@ int	stack_init(char *s, t_list2 **stack)
 		ft_lstadd_back2(stack, ft_lstnew2(s, 0));
 	return (0);
 }
+
+int	stack_clean(t_list2 *lst)
+{
+	t_list2 *next;
+
+	while (lst)
+	{
+		next = lst->next;
+		free(lst->pre_com);
+		free(lst);
+		lst = next;
+	}
+	return (0);
+}

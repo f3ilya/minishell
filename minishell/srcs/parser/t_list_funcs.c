@@ -19,7 +19,6 @@ t_list2	*ft_lstnew2(char *content, int pipe)
 	if (!elem)
 		return (NULL);
 	elem->pre_com = content;
-	elem->com = ft_split(content, ' ');
 	elem->fdd0 = 1000;
 	elem->fdd1 = 1001;
 	elem->fd0 = 0;

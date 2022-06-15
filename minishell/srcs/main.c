@@ -68,6 +68,7 @@ int	execute(char *input, char **env, t_param *p)
 		lst = lst->next;
 	}
 	execute2(stack, p, pipe);
+	stack_clean(stack);
 	return (0);
 }
 

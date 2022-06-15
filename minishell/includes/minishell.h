@@ -78,6 +78,7 @@ char	*dollar(char *s, int *i, char **env);
 void	parser(t_list2 *elem, char **env);
 int		pre_parser(char *s);
 int		stack_init(char *s, t_list2 **stack);
+int		stack_clean(t_list2 *lst);
 char	*redirects(char *s, int *i, t_list2 *elem, char **env);
 char	*form_result_string(int *i, int j, char *s, char *value);
 t_list2	*ft_lstnew2(char *content, int pipe);
