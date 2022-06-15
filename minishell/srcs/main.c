@@ -23,7 +23,7 @@ static void	execute2(t_list2 *stack, t_param *p, int pipe)
 	fd_on(stack, 1);
 }
 
-void	signal_int(int sig)
+void	signal_int()
 {
 	printf("\n");
 	rl_on_new_line();
@@ -78,6 +78,8 @@ int	main(int argc, char **argv, char **env)
 	int		i;
 	t_param	p;
 
+	if (argc || argv)
+		;
 	param_init(env, &p);
 	signal(SIGINT, signal_int);
 	signal(SIGQUIT, SIG_IGN);
