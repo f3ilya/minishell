@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-static char	*add_home(char *cmd)
+static char	*add_home(char *cmd, t_param *p)
 {
 	char	*home;
 	char	*tmp;
 
 	if (!ft_strncmp(cmd, "~/", 2))
 	{
-		home = getenv("HOME");
+		home = get_env("HOME", p);
 		if (home)
 		{
 			tmp = ft_strjoin(home, ft_substr(cmd, 1, ft_strlen(cmd)));
@@ -67,11 +67,11 @@ static int	check_path(char *cmd, t_param *p)
 
 	if (!ft_strncmp(cmd, "-", 2))
 	{
-		tmp = getenv("OLDPWD");
+		tmp = get_env("OLDPWD", p);
 		if (!tmp)
 			return (err_out("cd: ", "OLDPWD not set", 1, 1));
 		check_directory(tmp, p);
-		tmp = getenv("PWD");
+		tmp = get_env("PWD", p);
 		if (!tmp)
 			return (err_out("cd: ", "PWD not set", 1, 1));
 		ft_putendl_fd(tmp, 1);
@@ -89,10 +89,10 @@ int	my_cd(char **cmd, t_param *p)
 		return (err_out(cmd[0], ": too many arguments", 0, 1));
 	if (!cmd[1] || !ft_strncmp(cmd[1], "~", 2) || !ft_strncmp(cmd[1], "--", 3))
 	{
-		home = getenv("HOME");
+		home = get_env("HOME", p);
 		if (!home)
 			return (err_out(cmd[0], ": HOME not set", 0, 1));
 		return (check_directory(home, p));
 	}
-	return (check_path(add_home(cmd[1]), p));
+	return (check_path(add_home(cmd[1], p), p));
 }

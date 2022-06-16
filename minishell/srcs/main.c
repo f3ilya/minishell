@@ -23,7 +23,7 @@ static void	execute2(t_list2 *stack, t_param *p, int pipe)
 	fd_on(stack, 1);
 }
 
-void	signal_int()
+void	signal_int(int sig)
 {
 	printf("\n");
 	rl_on_new_line();
@@ -35,6 +35,7 @@ void	param_init(char **env, t_param *p)
 {
 	int	n;
 
+	g_status = 0;
 	n = 0;
 	while (env[n])
 		n++;
@@ -46,7 +47,7 @@ void	param_init(char **env, t_param *p)
 	p->pid = 0;
 }
 
-int	execute(char *input, char **env, t_param *p)
+int	execute(char *input, t_param *p)
 {
 	int		n;
 	int		pipe;
@@ -60,7 +61,7 @@ int	execute(char *input, char **env, t_param *p)
 	lst = stack;
 	while (lst)
 	{
-		parser(lst, env);
+		parser(lst, p->env);
 		if (errno != 0)
 			return (errno);
 		if (lst->pipe)
@@ -84,7 +85,6 @@ int	main(int argc, char **argv, char **env)
 	param_init(env, &p);
 	signal(SIGINT, signal_int);
 	signal(SIGQUIT, SIG_IGN);
-	g_status = 0;
 	i = -1;
 	while (++i >= 0)
 	{
@@ -95,7 +95,7 @@ int	main(int argc, char **argv, char **env)
 		if (input[0] == '\0')
 			continue ;
 		add_history(input);
-		execute(input, env, &p);
+		execute(input, &p);
 	}
 	return (0);
 }

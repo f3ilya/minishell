@@ -41,14 +41,13 @@ typedef struct s_list2
 	int				fd0;
 	int				fd1;
 	char			*pre_com;
-	char			**com;
 	int				pipe;
 	struct s_list2	*next;
 }	t_list2;
 
 void	signal_int(int sig);
 
-char	**my_path(void);
+char	**my_path(t_param *p);
 int		err_out(char *str, char *str2, int status, int out);
 int		ft_execve(char **cmd, char *str, t_param *p);
 int		exec(char **cmd, t_param *p);
@@ -68,6 +67,7 @@ void	ft_exit(int ex);
 void	set_env(char *env, char *new_env, t_param *p);
 int		find_env(char *cmd, t_param *p);
 char	**realloc_env(int size, t_param *p);
+char	*get_env(char *env, t_param *p);
 
 void	ft_free(char **str);
 

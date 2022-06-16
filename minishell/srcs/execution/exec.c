@@ -64,18 +64,17 @@ int	check_bin(char **cmd, t_param *p)
 	int			i;
 
 	i = -1;
-	path = my_path();
-	if (!path)
-		return (-1);
+	path = my_path(p);
+	if (!path && cmd[0][0] == '/')
+	{
+		str = cmd[0];
+		if (!lstat(str, &stat))
+			return (check_stat(cmd, str, stat, p));
+	}
 	while (path[++i])
 	{
-		if (cmd[0][0] == '/')
-			str = cmd[0];
-		else
-		{
-			tmp = ft_strjoin(path[i], "/");
-			str = ft_strjoin(tmp, cmd[0]);
-		}
+		tmp = ft_strjoin(path[i], "/");
+		str = ft_strjoin(tmp, cmd[0]);
 		if (!lstat(str, &stat))
 			return (check_stat(cmd, str, stat, p));
 		free(str);

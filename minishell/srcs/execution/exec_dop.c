@@ -51,15 +51,15 @@ int	ft_execve(char **cmd, char *str, t_param *p)
 	return (1);
 }
 
-char	**my_path(void)
+char	**my_path(t_param *p)
 {
 	char	*env;
 	char	**path;
 
-	env = getenv("PATH");
+	env = get_env("PATH", p);
 	if (!env)
 		return (NULL);
-	path = ft_split(ft_substr(env, 5, ft_strlen(env)), ':');
+	path = ft_split(ft_substr(env, 0, ft_strlen(env)), ':');
 	return (path);
 }
 
