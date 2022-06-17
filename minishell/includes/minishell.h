@@ -25,6 +25,7 @@
 # include "../libft/libft.h"
 # include "readline/history.h"
 # include "readline/readline.h"
+# include <sys/types.h>
 
 int		g_status;
 
@@ -82,10 +83,9 @@ int		stack_clean(t_list2 *lst);
 char	*redirects(char *s, int *i, t_list2 *elem, char **env);
 char	*form_result_string(int *i, int j, char *s, char *value);
 t_list2	*ft_lstnew2(char *content, int pipe);
-void	ft_lstprint(t_list2 *lst);
 void	ft_lstadd_back2(t_list2 **lst, t_list2 *new);
-int		ft_lstsize2(t_list2 *lst);
-t_list2	*ft_lstlast2(t_list2 *lst);
 char	*ft_strjoin_free_source(char *s1, char *s2);
+int		get_next_line(char **line, int fd);
+int		is_space(char c);
 
 #endif
