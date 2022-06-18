@@ -55,16 +55,14 @@ int	check_stat(char **cmd, char *str, struct stat stat, t_param *p)
 		return (err_out(cmd[0], ": Is a directory", 1, 1));
 }
 
-int	check_bin(char **cmd, t_param *p)
+int	check_bin(char **cmd, t_param *p, char **path)
 {
 	struct stat	stat;
-	char		**path;
 	char		*str;
 	char		*tmp;
 	int			i;
 
 	i = -1;
-	path = my_path(p);
 	if (!path && cmd[0][0] == '/')
 	{
 		str = cmd[0];
@@ -75,6 +73,7 @@ int	check_bin(char **cmd, t_param *p)
 	{
 		tmp = ft_strjoin(path[i], "/");
 		str = ft_strjoin(tmp, cmd[0]);
+		free(tmp);
 		if (!lstat(str, &stat))
 			return (check_stat(cmd, str, stat, p));
 		free(str);
@@ -110,8 +109,9 @@ int	check_builtin(char **cmd, t_param *p)
 
 int	exec(char **cmd, t_param *p)
 {
-	int	ret1;
-	int	ret2;
+	int		ret1;
+	int		ret2;
+	char	**path;
 
 	if (!cmd || !cmd[0] || cmd[0][0] == '\0')
 		return (-1);
@@ -120,7 +120,9 @@ int	exec(char **cmd, t_param *p)
 		return (ret1);
 	if (ret1 < 0)
 		return (-1);
-	ret2 = check_bin(cmd, p);
+	path = my_path(p);
+	ret2 = check_bin(cmd, p, path);
+	ft_free(path);
 	if (ret2)
 		return (ret2);
 	if (ret2 < 0)

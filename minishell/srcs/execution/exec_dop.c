@@ -42,6 +42,7 @@ int	ft_execve(char **cmd, char *str, t_param *p)
 			ft_exit(0);
 		}
 	}
+	free(str);
 	if (p->pipe)
 		return (1);
 	wait(&p->pid);
@@ -55,11 +56,15 @@ char	**my_path(t_param *p)
 {
 	char	*env;
 	char	**path;
+	char	*path_long;
 
 	env = get_env("PATH", p);
 	if (!env)
 		return (NULL);
-	path = ft_split(ft_substr(env, 0, ft_strlen(env)), ':');
+	path_long = ft_substr(env, 0, ft_strlen(env));
+	path = ft_split(path_long, ':');
+	free(env);
+	free(path_long);
 	return (path);
 }
 

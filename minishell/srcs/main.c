@@ -13,14 +13,18 @@
 
 static void	execute2(t_list2 *stack, t_param *p, int pipe)
 {
+	char	**cmd;
+
+	cmd = ft_split(stack->pre_com, ' ');
 	stack->fdd0 = dup(STDIN_FILENO);
 	stack->fdd1 = dup(STDOUT_FILENO);
 	fd_on(stack, 0);
 	if (pipe)
-		pipe_list(stack, p);
+		pipe_list(stack, p, cmd);
 	else
-		exec(ft_split(stack->pre_com, ' '), p);
+		exec(cmd, p);
 	fd_on(stack, 1);
+	ft_free(cmd);
 }
 
 void	signal_int(int sig)

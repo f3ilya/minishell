@@ -15,13 +15,15 @@ static char	*add_home(char *cmd, t_param *p)
 {
 	char	*home;
 	char	*tmp;
+	char	*sub;
 
 	if (!ft_strncmp(cmd, "~/", 2))
 	{
 		home = get_env("HOME", p);
 		if (home)
 		{
-			tmp = ft_strjoin(home, ft_substr(cmd, 1, ft_strlen(cmd)));
+			sub = ft_substr(cmd, 1, ft_strlen(cmd));
+			tmp = ft_strjoin_free_source(home, sub);
 			return (tmp);
 		}
 	}
@@ -71,10 +73,12 @@ static int	check_path(char *cmd, t_param *p)
 		if (!tmp)
 			return (err_out("cd: ", "OLDPWD not set", 1, 1));
 		check_directory(tmp, p);
+		free(tmp);
 		tmp = get_env("PWD", p);
 		if (!tmp)
 			return (err_out("cd: ", "PWD not set", 1, 1));
 		ft_putendl_fd(tmp, 1);
+		free(tmp);
 		return (1);
 	}
 	return (check_directory(cmd, p));
@@ -83,6 +87,8 @@ static int	check_path(char *cmd, t_param *p)
 int	my_cd(char **cmd, t_param *p)
 {
 	char	*home;
+	int		ret;
+	char	*str;
 
 	home = NULL;
 	if (cmd && cmd[1] && cmd[2])
@@ -92,7 +98,13 @@ int	my_cd(char **cmd, t_param *p)
 		home = get_env("HOME", p);
 		if (!home)
 			return (err_out(cmd[0], ": HOME not set", 0, 1));
-		return (check_directory(home, p));
+		ret = check_directory(home, p);
+		free(home);
+		return (ret);
 	}
-	return (check_path(add_home(cmd[1], p), p));
+	str = add_home(cmd[1], p);
+	ret = check_path(str, p);
+	if (!ft_strncmp(cmd[1], "~/", 2))
+		free(str);
+	return (ret);
 }

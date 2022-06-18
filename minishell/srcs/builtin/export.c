@@ -34,13 +34,18 @@ static void	add_export(char *cmd, t_param *p)
 {
 	int		i;
 	char	*end;
+	char	*new;
 
 	i = 0;
 	while (cmd[i] != '=' && cmd[i])
 		i++;
 	end = ft_strchr(cmd, '=');
 	if (end)
-		set_env(ft_substr(cmd, 0, i), end, p);
+	{
+		new = ft_substr(cmd, 0, i);
+		set_env(new, end, p);
+		free(new);
+	}
 	else
 		set_env(cmd, "", p);
 }

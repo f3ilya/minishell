@@ -53,7 +53,7 @@ int		err_out(char *str, char *str2, int status, int out);
 int		ft_execve(char **cmd, char *str, t_param *p);
 int		exec(char **cmd, t_param *p);
 void	child_status(t_param *p);
-void	pipe_list(t_list2 *arg, t_param *p);
+void	pipe_list(t_list2 *arg, t_param *p, char **cmd);
 void	fd_on(t_list2 *stack, int off);
 
 int		my_echo(char **cmd);

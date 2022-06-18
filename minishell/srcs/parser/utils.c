@@ -46,6 +46,7 @@ void	ft_free(char **str)
 		if (str[i])
 			free(str[i]);
 	}
+	free(str);
 }
 
 int	is_space(char c)

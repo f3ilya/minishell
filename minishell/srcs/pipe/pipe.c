@@ -23,7 +23,7 @@ void	child(t_list2 *arg, int fd, int end[2])
 	}
 }
 
-int	run_pipe(t_list2 *arg, t_param *p, int fd)
+int	run_pipe(t_list2 *arg, t_param *p, int fd, char **cmd)
 {
 	int	end[2];
 
@@ -42,14 +42,14 @@ int	run_pipe(t_list2 *arg, t_param *p, int fd)
 	{
 		child(arg, fd, end);
 		p->pipe = 1;
-		exec(ft_split(arg->pre_com, ' '), p);
+		exec(cmd, p);
 	}
 	close(end[1]);
 	close(fd);
 	return (end[0]);
 }
 
-void	pipe_list(t_list2 *arg, t_param *p)
+void	pipe_list(t_list2 *arg, t_param *p, char **cmd)
 {
 	int	fd;
 
@@ -57,7 +57,7 @@ void	pipe_list(t_list2 *arg, t_param *p)
 	while (arg)
 	{
 		fd_on(arg, 0);
-		fd = run_pipe(arg, p, fd);
+		fd = run_pipe(arg, p, fd, cmd);
 		arg = arg->next;
 	}
 	while (waitpid(-1, &p->pid, 0) > 0)
