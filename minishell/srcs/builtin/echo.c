@@ -27,7 +27,7 @@ int	check_n(char **cmd)
 	return (0);
 }
 
-int	my_echo(char **cmd, t_param *p)
+int	my_echo(char **cmd)
 {
 	int	n;
 	int	i;

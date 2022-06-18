@@ -66,13 +66,14 @@ char	**realloc_env(int size, t_param *p)
 
 char	*get_env(char *env, t_param *p)
 {
-	int 	i;
+	int		i;
 	size_t	len;
 
 	if (!env)
 		return (NULL);
 	len = ft_strlen(env);
-	if ((i = find_env(env, p)) != -1)
+	i = find_env(env, p);
+	if (i != -1)
 		return (ft_substr(p->env[i], (len + 1), ft_strlen(p->env[i])));
 	return (NULL);
 }

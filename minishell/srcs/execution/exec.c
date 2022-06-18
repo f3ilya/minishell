@@ -87,7 +87,7 @@ int	check_builtin(char **cmd, t_param *p)
 	char	*pwd;
 
 	if (!ft_strncmp(cmd[0], "echo", 5))
-		return (my_echo(cmd, p));
+		return (my_echo(cmd));
 	else if (!ft_strncmp(cmd[0], "cd", 3))
 		return (my_cd(cmd, p));
 	else if (!ft_strncmp(cmd[0], "pwd", 4))

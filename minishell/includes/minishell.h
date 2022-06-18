@@ -56,7 +56,7 @@ void	child_status(t_param *p);
 void	pipe_list(t_list2 *arg, t_param *p);
 void	fd_on(t_list2 *stack, int off);
 
-int		my_echo(char **cmd, t_param *p);
+int		my_echo(char **cmd);
 int		my_env(t_param *p);
 int		my_cd(char **cmd, t_param *p);
 int		my_unset(char **cmd, t_param *p);

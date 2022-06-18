@@ -25,6 +25,7 @@ static void	execute2(t_list2 *stack, t_param *p, int pipe)
 
 void	signal_int(int sig)
 {
+	(void)sig;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 1);
@@ -80,8 +81,8 @@ int	main(int argc, char **argv, char **env)
 	int		i;
 	t_param	p;
 
-	if (argc || argv)
-		;
+	(void)argc;
+	(void)argv;
 	param_init(env, &p);
 	signal(SIGINT, signal_int);
 	signal(SIGQUIT, SIG_IGN);

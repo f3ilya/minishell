@@ -69,7 +69,7 @@ int	stack_init(char *s, t_list2 **stack)
 
 int	stack_clean(t_list2 *lst)
 {
-	t_list2 *next;
+	t_list2	*next;
 
 	while (lst)
 	{

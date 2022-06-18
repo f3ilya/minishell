@@ -16,8 +16,8 @@ RM		= rm -f
 
 LIB		= -L./libft/ -lft
 
-#CFLAGS	= -Wall -Wextra -Werror ${HEADER}
-CFLAGS	= ${HEADER}
+CFLAGS	= -Wall -Wextra -Werror ${HEADER}
+#CFLAGS	= ${HEADER}
 
 RDLN	= /Users/snakita/.brew/Cellar/readline/8.1.2/
 
@@ -28,7 +28,8 @@ RDLN	= /Users/snakita/.brew/Cellar/readline/8.1.2/
 
 ${NAME}:	${OBJS}
 				@make -C ./libft/
-				@${CC} ${LIB} ${CFLAGS} ${OBJS} -lreadline -L${RDLN}lib -o ${NAME}
+				@${CC} ${LIB} ${CFLAGS} ${OBJS} -lreadline -o ${NAME}
+#				@${CC} ${LIB} ${CFLAGS} ${OBJS} -lreadline -L${RDLN}lib -o ${NAME}
 
 all:		${NAME}
 
